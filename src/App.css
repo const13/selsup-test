@@ -1,5 +1,7 @@
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .App-logo {
@@ -35,4 +37,20 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.paramsColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.param {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.inputField {
+  margin-left: 15px;
 }
