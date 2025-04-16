@@ -22,6 +22,7 @@ interface Model {
 interface ParamsEditorProps {
   params: Param<string>[];
   model: Model;
+  getModel: (model: Model) => void;
 }
 
 const defaultParams: Param<string>[] = [
@@ -52,7 +53,7 @@ const defaultModel: Model = {
 };
 
 
-function ParamsEditor({ params, model }: ParamsEditorProps) {
+function ParamsEditor({ params, model, getModel }: ParamsEditorProps) {
   const { name: modelName, paramValues } = model;
   const [myParamValues, setMyParamValues] = useState<ParamValue[]>(paramValues);
 
@@ -68,10 +69,6 @@ function ParamsEditor({ params, model }: ParamsEditorProps) {
       return param;
     }))
   };
-
-  const getModel = (): Model => {
-    return model;
-  }
 
   return (
     <>
@@ -89,17 +86,21 @@ function ParamsEditor({ params, model }: ParamsEditorProps) {
         </label>)
         )}
       </div>
+      <button onClick={() => getModel(model)}>Press</button>
       <code>{JSON.stringify(model)}</code>
     </>
   );
 }
 
 function App() {
+  const getModel = (e: Model) => console.log(e);
+
   return (
     <div className='App'>
       <ParamsEditor
         params={defaultParams}
         model={defaultModel}
+        getModel={(e) => getModel(e)}
       />
     </div>
   );
